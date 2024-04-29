@@ -10,7 +10,7 @@ const OrganizationIdPage = async () => {
     return (
 
         <div className="flex flex-col space-y-4">
-            <Form/>
+            <Form />
             <div className="space-y-2">
                 {boards.map((board) => (
                     <Board title={board.title} id={board.id} key={board.id} />
