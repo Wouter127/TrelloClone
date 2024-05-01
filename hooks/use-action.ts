@@ -10,7 +10,7 @@ interface UseActionOptions<TOutput> {
     onComplete?: () => void;
 }
 
-export const useAction = <TInput, TOutput> (
+export const useAction = <TInput, TOutput>(
     action: Action<TInput, TOutput>,
     options: UseActionOptions<TOutput> = {}
 ) => {
@@ -31,9 +31,9 @@ export const useAction = <TInput, TOutput> (
                 if (!result) {
                     return;
                 }
-                if (result.fieldErrors) {
-                    setFieldErrors(result.fieldErrors);
-                }
+
+                setFieldErrors(result.fieldErrors);
+
                 if (result.error) {
                     setError(result.error);
                     options.onError?.(result.error);
