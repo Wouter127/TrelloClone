@@ -1,7 +1,7 @@
 "use client"
 
 import { createBoard } from "@/actions/create-board"
-import { useAction } from "@/hooks/useAction"
+import { useAction } from "@/hooks/use-action"
 import { FormInput } from "@/components/form/form-input"
 import { FormSubmit } from "@/components/form/form-submit"
 
