@@ -12,7 +12,7 @@ interface BoardTitleFormProps {
     data: Board;
 }
 export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
-    const { execute } = useAction(updateBoard, {
+    const { execute, fieldErrors } = useAction(updateBoard, {
         onSuccess: (data) => {
             toast.success(`Board "${data.title}" updated!`);
             setTitle(data.title)
@@ -41,6 +41,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
 
     const onSubmit = (formData: FormData) => {
         const title = formData.get("title") as string;
+        console.log(title)
         execute({
             title,
             id: data.id
@@ -54,7 +55,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
     if (isEditing) {
         return (
             <form action={onSubmit} className="flex items-center gap-x-2" ref={formRef} >
-                <FormInput ref={inputRef} id="title" onBlur={onBlur} defaultValue={title} className="text-lg font-bold px-[7px] h-7 py-1 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none" />
+                <FormInput errors={fieldErrors} ref={inputRef} id="title" onBlur={onBlur} defaultValue={title} className="text-lg font-bold px-[7px] h-7 py-1 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none" />
             </form>
         )
     }
