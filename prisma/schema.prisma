@@ -9,18 +9,18 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("trello_clone_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("trello_clone_PRISMA_URL") // uses connection pooling
   directUrl = env("trello_clone_URL_NON_POOLING") // uses a direct connection
 }
 
 model Board {
-  id String @id @default(uuid())
-  orgId String
-  title String
-  imageId String
+  id            String @id @default(uuid())
+  orgId         String
+  title         String
+  imageId       String
   imageThumbUrl String @db.Text
-  imageFullUrl String @db.Text
+  imageFullUrl  String @db.Text
   imageUserName String @db.Text
   imageLinkHTML String @db.Text
 
@@ -31,32 +31,32 @@ model Board {
 }
 
 model List {
-  id String @id @default(uuid())
-  title String
-  order Int
+  id      String @id @default(uuid())
+  title   String
+  order   Int
   boardId String
-  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
 
   cards Card[]
 
-  @@index([boardId])
-
   updatedAt DateTime @default(now())
   createdAt DateTime @updatedAt
+
+  @@index([boardId])
 }
 
 model Card {
-  id String @id @default(uuid())
-  title String
-  order Int
+  id          String  @id @default(uuid())
+  title       String
+  order       Int
   description String? @db.Text
 
   listId String
-  
-  lists List @relation(fields: [listId], references: [id], onDelete: Cascade)
 
-  @@index([listId])
+  list List @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   updatedAt DateTime @default(now())
   createdAt DateTime @updatedAt
+
+  @@index([listId])
 }

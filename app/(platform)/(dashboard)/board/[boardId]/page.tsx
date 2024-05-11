@@ -10,9 +10,9 @@ interface BoardIdPageProps {
     };
 };
 
-const BoardIdPage = async ({params}: BoardIdPageProps) => {
+const BoardIdPage = async ({ params }: BoardIdPageProps) => {
 
-    const {orgId} = auth();
+    const { orgId } = auth();
 
     if (!orgId) {
         redirect("/select-org");
@@ -31,6 +31,9 @@ const BoardIdPage = async ({params}: BoardIdPageProps) => {
                     order: "asc"
                 }
             }
+        },
+        orderBy: {
+            order: "asc"
         }
     });
 
