@@ -21,9 +21,9 @@ interface FormTextAreaProps {
     defaultValue?: string;
 }
 
-export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(({id, label, placeholder, required, disabled, errors, className, onBlur, onClick, onKeyDown, defaultValue
+export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(({ id, label, placeholder, required, disabled, errors, className, onBlur, onClick, onKeyDown, defaultValue
 }, ref) => {
-    const {pending} = useFormStatus();
+    const { pending } = useFormStatus();
 
     return (
         <div className="space-y-2 w-full">
@@ -32,11 +32,11 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>((
                     <Label htmlFor={id} className="text-xs font-semibold text-neutra-700">
                         {label}
                     </Label>
-                ): null}
-                <Textarea aria-describedby={`${id}-error`} onKeyDown={onKeyDown} onBlur={onBlur} onClick={onClick} ref={ref} required={required} placeholder={placeholder} name={id} id={id} disabled={pending || disabled} className={cn(
+                ) : null}
+                <Textarea defaultValue={defaultValue} aria-describedby={`${id}-error`} onKeyDown={onKeyDown} onBlur={onBlur} onClick={onClick} ref={ref} required={required} placeholder={placeholder} name={id} id={id} disabled={pending || disabled} className={cn(
                     "resize-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-0 focus:ring-0 outline-none shadow-sm",
                     className
-                )}/>
+                )} />
             </div>
             <FormErrors id={id} errors={errors} />
         </div>
